@@ -1,0 +1,300 @@
+// ============================================
+// VARIABLES DE CONFIGURACIÓN
+// ============================================
+
+// Configuración del sistema de grid
+$grid-system: 'flexbox' !default; // Opciones: 'flexbox' o 'grid'
+$grid-columns: 12 !default;
+$grid-gutter: 20px !default;
+
+// Breakpoints
+$breakpoints: (
+  small: 0,
+  medium: 640px,
+  large: 1024px,
+  xlarge: 1200px,
+  xxlarge: 1440px
+) !default;
+
+// Activar/desactivar características
+$enable-offset: true !default;
+$enable-gap: true !default;
+
+// Contenedor
+$container-max-width: 1200px !default;
+$container-padding: 15px !default;
+
+// ============================================
+// MIXINS AUXILIARES
+// ============================================
+
+@mixin breakpoint($size) {
+  @if map-has-key($breakpoints, $size) {
+    $breakpoint: map-get($breakpoints, $size);
+    @if $breakpoint == 0 {
+      @content;
+    } @else {
+      @media screen and (min-width: $breakpoint) {
+        @content;
+      }
+    }
+  }
+}
+
+// ============================================
+// CONTENEDOR
+// ============================================
+
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $container-padding;
+  padding-right: $container-padding;
+}
+
+.container-fluid {
+  width: 100%;
+  padding-left: $container-padding;
+  padding-right: $container-padding;
+}
+
+// ============================================
+// SISTEMA DE GRID - FLEXBOX
+// ============================================
+
+@if $grid-system == 'flexbox' {
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc($grid-gutter / -2);
+    margin-right: calc($grid-gutter / -2);
+    
+    &.no-gutters {
+      margin-left: 0;
+      margin-right: 0;
+      
+      > [class*='col-'] {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+  
+  // Clases base de columnas
+  [class*='col-'] {
+    position: relative;
+    width: 100%;
+    padding-left: calc($grid-gutter / 2);
+    padding-right: calc($grid-gutter / 2);
+    flex: 0 0 auto;
+  }
+  
+  // Generar clases de columnas para cada breakpoint
+  @each $breakpoint-name, $breakpoint-value in $breakpoints {
+    @include breakpoint($breakpoint-name) {
+      
+      // Columna que ocupa todo el ancho
+      .col-#{$breakpoint-name} {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+      }
+      
+      // Columna automática
+      .col-#{$breakpoint-name}-auto {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 100%;
+      }
+      
+      // Generar columnas numéricas
+      @for $i from 1 through $grid-columns {
+        .col-#{$breakpoint-name}-#{$i} {
+          flex: 0 0 percentage(calc($i / $grid-columns));
+          max-width: percentage(calc($i / $grid-columns));
+        }
+      }
+      
+      // Clases de offset
+      @if $enable-offset {
+        @for $i from 0 through ($grid-columns - 1) {
+          .offset-#{$breakpoint-name}-#{$i} {
+            margin-left: percentage(calc($i / $grid-columns));
+          }
+        }
+      }
+    }
+  }
+  
+  // Alineación de columnas
+  .row-align-start { align-items: flex-start; }
+  .row-align-center { align-items: center; }
+  .row-align-end { align-items: flex-end; }
+  .row-align-stretch { align-items: stretch; }
+  .row-align-baseline { align-items: baseline; }
+  
+  .row-justify-start { justify-content: flex-start; }
+  .row-justify-center { justify-content: center; }
+  .row-justify-end { justify-content: flex-end; }
+  .row-justify-between { justify-content: space-between; }
+  .row-justify-around { justify-content: space-around; }
+  
+  // Orden de columnas
+  @each $breakpoint-name, $breakpoint-value in $breakpoints {
+    @include breakpoint($breakpoint-name) {
+      @for $i from 0 through $grid-columns {
+        .order-#{$breakpoint-name}-#{$i} {
+          order: $i;
+        }
+      }
+    }
+  }
+}
+
+// ============================================
+// SISTEMA DE GRID - CSS GRID
+// ============================================
+
+@if $grid-system == 'grid' {
+  
+  .row {
+    display: grid;
+    grid-template-columns: repeat($grid-columns, 1fr);
+    gap: $grid-gutter;
+    
+    &.no-gutters {
+      gap: 0;
+    }
+  }
+  
+  // Clases base de columnas
+  [class*='col-'] {
+    position: relative;
+  }
+  
+  // Generar clases de columnas para cada breakpoint
+  @each $breakpoint-name, $breakpoint-value in $breakpoints {
+    @include breakpoint($breakpoint-name) {
+      
+      // Columna que ocupa todo el ancho
+      .col-#{$breakpoint-name} {
+        grid-column: 1 / -1;
+      }
+      
+      // Columna automática
+      .col-#{$breakpoint-name}-auto {
+        grid-column: auto;
+      }
+      
+      // Generar columnas numéricas
+      @for $i from 1 through $grid-columns {
+        .col-#{$breakpoint-name}-#{$i} {
+          grid-column: span $i;
+        }
+      }
+      
+      // Clases de offset (start position)
+      @if $enable-offset {
+        @for $i from 1 through $grid-columns {
+          .offset-#{$breakpoint-name}-#{$i} {
+            grid-column-start: $i + 1;
+          }
+        }
+      }
+    }
+  }
+  
+  // Alineación de contenido
+  .row-align-start { align-items: start; }
+  .row-align-center { align-items: center; }
+  .row-align-end { align-items: end; }
+  .row-align-stretch { align-items: stretch; }
+  
+  .row-justify-start { justify-items: start; }
+  .row-justify-center { justify-items: center; }
+  .row-justify-end { justify-items: end; }
+  .row-justify-stretch { justify-items: stretch; }
+  
+  // Orden de columnas
+  @each $breakpoint-name, $breakpoint-value in $breakpoints {
+    @include breakpoint($breakpoint-name) {
+      @for $i from 0 through $grid-columns {
+        .order-#{$breakpoint-name}-#{$i} {
+          order: $i;
+        }
+      }
+    }
+  }
+}
+
+// ============================================
+// CLASES DE GAP (OPCIONAL)
+// ============================================
+
+@if $enable-gap {
+  $gap-sizes: (
+    0: 0,
+    1: 5px,
+    2: 10px,
+    3: 15px,
+    4: 20px,
+    5: 30px,
+    6: 40px
+  );
+  
+  @each $name, $size in $gap-sizes {
+    @if $grid-system == 'flexbox' {
+      .gap-#{$name} {
+        margin-left: calc($size / -2);
+        margin-right: calc($size / -2);
+        
+        > [class*='col-'] {
+          padding-left: calc($size / 2);
+          padding-right: calc($size / 2);
+        }
+      }
+      
+      .gap-x-#{$name} {
+        margin-left: calc($size / -2);
+        margin-right: calc($size / -2);
+        
+        > [class*='col-'] {
+          padding-left: calc($size / 2);
+          padding-right: calc($size / 2);
+        }
+      }
+      
+      .gap-y-#{$name} > [class*='col-'] {
+        margin-bottom: $size;
+      }
+    } @else if $grid-system == 'grid' {
+      .gap-#{$name} { gap: $size; }
+      .gap-x-#{$name} { column-gap: $size; }
+      .gap-y-#{$name} { row-gap: $size; }
+    }
+  }
+}
+
+// ============================================
+// UTILIDADES ADICIONALES
+// ============================================
+
+// Ocultar/Mostrar elementos por breakpoint
+@each $breakpoint-name, $breakpoint-value in $breakpoints {
+  @include breakpoint($breakpoint-name) {
+    .hide-#{$breakpoint-name} {
+      display: none !important;
+    }
+    
+    .show-#{$breakpoint-name} {
+      display: block !important;
+    }
+  }
+}
+
+// Ancho completo
+.w-100 { width: 100%; }
+.h-100 { height: 100%; }
