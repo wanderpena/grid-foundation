@@ -1,0 +1,345 @@
+@use '../config/config' as *;
+
+// ==========================================
+// CAPA: LAYOUT - Estructuras de Layout
+// ==========================================
+
+@layer layout {
+  // ------------------------------------------
+  // Contenedor Principal
+  // ------------------------------------------
+  .container {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--spacing-4);
+    padding-right: var(--spacing-4);
+
+    @include mq(md) {
+      padding-left: var(--spacing-6);
+      padding-right: var(--spacing-6);
+    }
+
+    @include mq(lg) {
+      padding-left: var(--spacing-8);
+      padding-right: var(--spacing-8);
+    }
+  }
+
+  // Variantes de contenedor
+  .container--sm {
+    max-width: 640px;
+  }
+
+  .container--md {
+    max-width: 768px;
+  }
+
+  .container--lg {
+    max-width: 1024px;
+  }
+
+  .container--xl {
+    max-width: 1280px;
+  }
+
+  .container--full {
+    max-width: 100%;
+  }
+
+  // ------------------------------------------
+  // Grid System
+  // ------------------------------------------
+  .grid {
+    display: grid;
+    gap: var(--spacing-4);
+
+    &--cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &--cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    &--cols-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include mq(sm) {
+      &--cols-sm-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      &--cols-sm-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      &--cols-sm-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @include mq(md) {
+      &--cols-md-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      &--cols-md-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      &--cols-md-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @include mq(lg) {
+      &--cols-lg-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      &--cols-lg-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      &--cols-lg-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    // Gap variants
+    &--gap-0 {
+      gap: var(--spacing-0);
+    }
+
+    &--gap-2 {
+      gap: var(--spacing-2);
+    }
+
+    &--gap-4 {
+      gap: var(--spacing-4);
+    }
+
+    &--gap-6 {
+      gap: var(--spacing-6);
+    }
+
+    &--gap-8 {
+      gap: var(--spacing-8);
+    }
+  }
+
+  // ------------------------------------------
+  // Flex Layout
+  // ------------------------------------------
+  .flex {
+    display: flex;
+
+    &--row {
+      flex-direction: row;
+    }
+
+    &--col {
+      flex-direction: column;
+    }
+
+    &--wrap {
+      flex-wrap: wrap;
+    }
+
+    &--nowrap {
+      flex-wrap: nowrap;
+    }
+
+    // Justify Content
+    &--justify-start {
+      justify-content: flex-start;
+    }
+
+    &--justify-center {
+      justify-content: center;
+    }
+
+    &--justify-end {
+      justify-content: flex-end;
+    }
+
+    &--justify-between {
+      justify-content: space-between;
+    }
+
+    &--justify-around {
+      justify-content: space-around;
+    }
+
+    // Align Items
+    &--items-start {
+      align-items: flex-start;
+    }
+
+    &--items-center {
+      align-items: center;
+    }
+
+    &--items-end {
+      align-items: flex-end;
+    }
+
+    &--items-stretch {
+      align-items: stretch;
+    }
+
+    // Gap
+    &--gap-2 {
+      gap: var(--spacing-2);
+    }
+
+    &--gap-4 {
+      gap: var(--spacing-4);
+    }
+
+    &--gap-6 {
+      gap: var(--spacing-6);
+    }
+
+    &--gap-8 {
+      gap: var(--spacing-8);
+    }
+  }
+
+  // ------------------------------------------
+  // Stack (Layout vertical con espaciado consistente)
+  // ------------------------------------------
+  .stack {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    > :where(* + *) {
+      margin-top: var(--spacing-4);
+    }
+
+    &--sm {
+      > :where(* + *) {
+        margin-top: var(--spacing-2);
+      }
+    }
+
+    &--lg {
+      > :where(* + *) {
+        margin-top: var(--spacing-6);
+      }
+    }
+
+    &--xl {
+      > :where(* + *) {
+        margin-top: var(--spacing-8);
+      }
+    }
+  }
+
+  // ------------------------------------------
+  // Cluster (Layout horizontal con wrapping)
+  // ------------------------------------------
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+    align-items: center;
+
+    &--sm {
+      gap: var(--spacing-2);
+    }
+
+    &--lg {
+      gap: var(--spacing-6);
+    }
+  }
+
+  // ------------------------------------------
+  // Sidebar Layout
+  // ------------------------------------------
+  .sidebar-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+
+    @include mq(lg) {
+      grid-template-columns: 280px 1fr;
+    }
+
+    &--reverse {
+      @include mq(lg) {
+        grid-template-columns: 1fr 280px;
+      }
+    }
+  }
+
+  // ------------------------------------------
+  // Header / Footer
+  // ------------------------------------------
+  .header,
+  .footer {
+    width: 100%;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .footer {
+    background-color: var(--color-neutral-900);
+    color: var(--color-neutral-300);
+    padding: var(--spacing-12) 0;
+    margin-top: auto;
+  }
+
+  // ------------------------------------------
+  // Main Content Area
+  // ------------------------------------------
+  .main {
+    min-height: calc(100vh - 100px);
+    padding: var(--spacing-8) 0;
+  }
+
+  // ------------------------------------------
+  // Section
+  // ------------------------------------------
+  .section {
+    padding: var(--spacing-12) 0;
+
+    &--sm {
+      padding: var(--spacing-8) 0;
+    }
+
+    &--lg {
+      padding: var(--spacing-16) 0;
+    }
+  }
+
+  // ------------------------------------------
+  // Divider
+  // ------------------------------------------
+  .divider {
+    height: 1px;
+    background-color: var(--color-border);
+    width: 100%;
+  }
+
+  // ------------------------------------------
+  // Spacer
+  // ------------------------------------------
+  .spacer {
+    flex: 1;
+  }
+}

@@ -1,0 +1,142 @@
+@use 'sass:map';
+@use '../config/config' as config;
+
+// ==========================================
+// CAPA: THEME - Tokens de Diseño
+// ==========================================
+
+@layer theme {
+  :root {
+    // ------------------------------------------
+    // Colores (Design Tokens)
+    // ------------------------------------------
+    --color-primary-50: #{map.get(map.get(config.$colors, primary), 50)};
+    --color-primary-100: #{map.get(map.get(config.$colors, primary), 100)};
+    --color-primary-200: #{map.get(map.get(config.$colors, primary), 200)};
+    --color-primary-300: #{map.get(map.get(config.$colors, primary), 300)};
+    --color-primary-400: #{map.get(map.get(config.$colors, primary), 400)};
+    --color-primary-500: #{map.get(map.get(config.$colors, primary), 500)};
+    --color-primary-600: #{map.get(map.get(config.$colors, primary), 600)};
+    --color-primary-700: #{map.get(map.get(config.$colors, primary), 700)};
+    --color-primary-800: #{map.get(map.get(config.$colors, primary), 800)};
+    --color-primary-900: #{map.get(map.get(config.$colors, primary), 900)};
+
+    --color-neutral-50: #{map.get(map.get(config.$colors, neutral), 50)};
+    --color-neutral-100: #{map.get(map.get(config.$colors, neutral), 100)};
+    --color-neutral-200: #{map.get(map.get(config.$colors, neutral), 200)};
+    --color-neutral-300: #{map.get(map.get(config.$colors, neutral), 300)};
+    --color-neutral-400: #{map.get(map.get(config.$colors, neutral), 400)};
+    --color-neutral-500: #{map.get(map.get(config.$colors, neutral), 500)};
+    --color-neutral-600: #{map.get(map.get(config.$colors, neutral), 600)};
+    --color-neutral-700: #{map.get(map.get(config.$colors, neutral), 700)};
+    --color-neutral-800: #{map.get(map.get(config.$colors, neutral), 800)};
+    --color-neutral-900: #{map.get(map.get(config.$colors, neutral), 900)};
+
+    --color-success: #{map.get(map.get(config.$colors, semantic), success)};
+    --color-warning: #{map.get(map.get(config.$colors, semantic), warning)};
+    --color-error: #{map.get(map.get(config.$colors, semantic), error)};
+    --color-info: #{map.get(map.get(config.$colors, semantic), info)};
+
+    // Colores semánticos de uso común
+    --color-background: var(--color-neutral-50);
+    --color-surface: #ffffff;
+    --color-text-primary: var(--color-neutral-900);
+    --color-text-secondary: var(--color-neutral-600);
+    --color-text-muted: var(--color-neutral-500);
+    --color-border: var(--color-neutral-200);
+    --color-border-hover: var(--color-neutral-300);
+
+    // ------------------------------------------
+    // Tipografía
+    // ------------------------------------------
+    --font-family-base: #{config.$font-family-base};
+    --font-family-mono: #{config.$font-family-mono};
+
+    --font-size-xs: #{map.get(config.$font-sizes, xs)};
+    --font-size-sm: #{map.get(config.$font-sizes, sm)};
+    --font-size-base: #{map.get(config.$font-sizes, base)};
+    --font-size-lg: #{map.get(config.$font-sizes, lg)};
+    --font-size-xl: #{map.get(config.$font-sizes, xl)};
+    --font-size-2xl: #{map.get(config.$font-sizes, '2xl')};
+    --font-size-3xl: #{map.get(config.$font-sizes, '3xl')};
+    --font-size-4xl: #{map.get(config.$font-sizes, '4xl')};
+
+    --font-weight-normal: #{map.get(config.$font-weights, normal)};
+    --font-weight-medium: #{map.get(config.$font-weights, medium)};
+    --font-weight-semibold: #{map.get(config.$font-weights, semibold)};
+    --font-weight-bold: #{map.get(config.$font-weights, bold)};
+
+    --line-height-tight: #{map.get(config.$line-heights, tight)};
+    --line-height-base: #{map.get(config.$line-heights, base)};
+    --line-height-relaxed: #{map.get(config.$line-heights, relaxed)};
+
+    // ------------------------------------------
+    // Espaciado
+    // ------------------------------------------
+    --spacing-0: #{map.get(config.$spacing, 0)};
+    --spacing-1: #{map.get(config.$spacing, 1)};
+    --spacing-2: #{map.get(config.$spacing, 2)};
+    --spacing-3: #{map.get(config.$spacing, 3)};
+    --spacing-4: #{map.get(config.$spacing, 4)};
+    --spacing-5: #{map.get(config.$spacing, 5)};
+    --spacing-6: #{map.get(config.$spacing, 6)};
+    --spacing-8: #{map.get(config.$spacing, 8)};
+    --spacing-10: #{map.get(config.$spacing, 10)};
+    --spacing-12: #{map.get(config.$spacing, 12)};
+    --spacing-16: #{map.get(config.$spacing, 16)};
+    --spacing-20: #{map.get(config.$spacing, 20)};
+    --spacing-24: #{map.get(config.$spacing, 24)};
+
+    // ------------------------------------------
+    // Bordes
+    // ------------------------------------------
+    --radius-none: #{map.get(config.$border-radius, none)};
+    --radius-sm: #{map.get(config.$border-radius, sm)};
+    --radius-base: #{map.get(config.$border-radius, base)};
+    --radius-md: #{map.get(config.$border-radius, md)};
+    --radius-lg: #{map.get(config.$border-radius, lg)};
+    --radius-xl: #{map.get(config.$border-radius, xl)};
+    --radius-2xl: #{map.get(config.$border-radius, '2xl')};
+    --radius-full: #{map.get(config.$border-radius, full)};
+
+    // ------------------------------------------
+    // Sombras
+    // ------------------------------------------
+    --shadow-sm: #{map.get(config.$box-shadows, sm)};
+    --shadow-base: #{map.get(config.$box-shadows, base)};
+    --shadow-md: #{map.get(config.$box-shadows, md)};
+    --shadow-lg: #{map.get(config.$box-shadows, lg)};
+    --shadow-xl: #{map.get(config.$box-shadows, xl)};
+
+    // ------------------------------------------
+    // Transiciones
+    // ------------------------------------------
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --transition-slow: 350ms ease;
+
+    // ------------------------------------------
+    // Z-Index
+    // ------------------------------------------
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+  }
+
+  // Tema oscuro (opcional)
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background: var(--color-neutral-900);
+      --color-surface: var(--color-neutral-800);
+      --color-text-primary: var(--color-neutral-50);
+      --color-text-secondary: var(--color-neutral-300);
+      --color-text-muted: var(--color-neutral-400);
+      --color-border: var(--color-neutral-700);
+      --color-border-hover: var(--color-neutral-600);
+    }
+  }
+}

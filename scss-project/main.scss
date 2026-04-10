@@ -1,0 +1,63 @@
+// ==========================================
+// SCSS PROJECT - Main Entry Point
+// Arquitectura Modular Basada en Capas (@layer)
+// ==========================================
+
+// ------------------------------------------
+// 1. IMPORTACIÓN DE MÓDULOS
+// ------------------------------------------
+// Las reglas @use deben ir antes de cualquier otra regla
+
+// CONFIG - Variables, mixins y funciones (no genera CSS directamente)
+@use 'config/config' as *;
+
+// THEME - Tokens de diseño (CSS Custom Properties)
+@use 'theme/theme';
+
+// RESET - Reset moderno basado en Josh Comeau
+@use 'reset/reset';
+
+// BASE - Estilos base y tipografía
+@use 'base/base';
+
+// LAYOUT - Estructuras de layout (container, grid, flex, etc.)
+@use 'layout/layout';
+
+// COMPONENTS - Componentes reutilizables (botones, cards, forms, etc.)
+@use 'components/components';
+
+// UTILITIES - Clases utilitarias (margin, padding, display, etc.)
+@use 'utilities/utilities';
+
+// ------------------------------------------
+// 2. DECLARACIÓN DE CAPAS (Orden Importante)
+// ------------------------------------------
+// El orden determina la especificidad de las capas.
+// Las capas declaradas primero tienen menor prioridad.
+// Nota: @layer debe estar después de @use en el mismo archivo
+@layer theme, reset, base, layout, components, utilities;
+
+// ------------------------------------------
+// NOTAS DE USO:
+// ------------------------------------------
+// 
+// Para compilar este archivo SCSS a CSS:
+// $ sass main.scss styles.css --style compressed
+//
+// O en modo watch para desarrollo:
+// $ sass main.scss styles.css --watch
+//
+// Jerarquía de capas (de menor a mayor prioridad):
+// 1. theme      - Variables CSS y tokens
+// 2. reset      - Normalización del navegador
+// 3. base       - Estilos de elementos HTML
+// 4. layout     - Estructuras de página
+// 5. components - Componentes UI reutilizables
+// 6. utilities  - Clases utilitarias (mayor prioridad)
+//
+// Esta arquitectura permite:
+// - Sobrescribir estilos de manera predecible
+// - Mantener el código organizado y escalable
+// - Evitar conflictos de especificidad
+// - Facilitar el mantenimiento del proyecto
+// ------------------------------------------
