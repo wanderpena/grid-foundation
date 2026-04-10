@@ -1,0 +1,222 @@
+@use '../config/config' as *;
+
+// ==========================================
+// CAPA: BASE - Estilos Base y Tipografía
+// ==========================================
+
+@layer base {
+  // ------------------------------------------
+  // Body
+  // ------------------------------------------
+  body {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-base);
+    color: var(--color-text-primary);
+    background-color: var(--color-background);
+  }
+
+  // ------------------------------------------
+  // Enlaces
+  // ------------------------------------------
+  a {
+    color: var(--color-primary-600);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+
+    &:hover {
+      color: var(--color-primary-700);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary-500);
+      outline-offset: 2px;
+    }
+  }
+
+  // ------------------------------------------
+  // Encabezados
+  // ------------------------------------------
+  :where(h1, h2, h3, h4, h5, h6) {
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
+  }
+
+  h1 {
+    font-size: var(--font-size-4xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-3xl);
+  }
+
+  h3 {
+    font-size: var(--font-size-2xl);
+  }
+
+  h4 {
+    font-size: var(--font-size-xl);
+  }
+
+  h5 {
+    font-size: var(--font-size-lg);
+  }
+
+  h6 {
+    font-size: var(--font-size-base);
+  }
+
+  // ------------------------------------------
+  // Párrafos
+  // ------------------------------------------
+  p {
+    margin-bottom: var(--spacing-4);
+    color: var(--color-text-secondary);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // ------------------------------------------
+  // Listas
+  // ------------------------------------------
+  :where(ul, ol) {
+    padding-left: var(--spacing-6);
+    margin-bottom: var(--spacing-4);
+
+    li {
+      margin-bottom: var(--spacing-2);
+      color: var(--color-text-secondary);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // ------------------------------------------
+  // Citas
+  // ------------------------------------------
+  blockquote {
+    border-left: 4px solid var(--color-primary-500);
+    padding-left: var(--spacing-4);
+    margin: var(--spacing-6) 0;
+    font-style: italic;
+    color: var(--color-text-secondary);
+
+    cite {
+      display: block;
+      margin-top: var(--spacing-2);
+      font-size: var(--font-size-sm);
+      font-style: normal;
+      color: var(--color-text-muted);
+    }
+  }
+
+  // ------------------------------------------
+  // Código
+  // ------------------------------------------
+  code {
+    font-family: var(--font-family-mono);
+    font-size: 0.875em;
+    background-color: var(--color-neutral-100);
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-primary);
+  }
+
+  pre {
+    background-color: var(--color-neutral-900);
+    color: var(--color-neutral-100);
+    padding: var(--spacing-4);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin-bottom: var(--spacing-4);
+
+    code {
+      background-color: transparent;
+      padding: 0;
+      color: inherit;
+    }
+  }
+
+  // ------------------------------------------
+  // Imágenes
+  // ------------------------------------------
+  img {
+    height: auto;
+    border-radius: var(--radius-base);
+  }
+
+  // ------------------------------------------
+  // Tablas básicas
+  // ------------------------------------------
+  table {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+  }
+
+  th {
+    font-weight: var(--font-weight-semibold);
+    text-align: left;
+    color: var(--color-text-primary);
+  }
+
+  // ------------------------------------------
+  // Separadores
+  // ------------------------------------------
+  hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: var(--spacing-8) 0;
+  }
+
+  // ------------------------------------------
+  // Selección de texto
+  // ------------------------------------------
+  ::selection {
+    background-color: var(--color-primary-200);
+    color: var(--color-primary-900);
+  }
+
+  // ------------------------------------------
+  // Marcadores de formulario
+  // ------------------------------------------
+  label {
+    display: block;
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--spacing-2);
+    color: var(--color-text-primary);
+  }
+
+  // ------------------------------------------
+  // Pequeño texto
+  // ------------------------------------------
+  small {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
+  // ------------------------------------------
+  // Texto en negrita y énfasis
+  // ------------------------------------------
+  strong {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  // ------------------------------------------
+  // Abbreviations
+  // ------------------------------------------
+  abbr[title] {
+    text-decoration: underline dotted;
+    cursor: help;
+  }
+}

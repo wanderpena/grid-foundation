@@ -1,0 +1,8 @@
+```
+# Compiled CSS and maps
+*.css
+*.css.map
+
+# SCSS cache
+.sass-cache/
+```
